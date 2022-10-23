@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    float[] positions = new float[] { -4.6f, 0, 4.6f };
+    //float[] positions = new float[] { -4.6f, 0, 4.6f };
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             int posNum = Random.Range(0, 3);
 
-            Vector3 enemyPos = new Vector3(17 * -1 /** (Random.Range(0, 1) * 2 - 1)*/, positions[posNum], 0);
+            Vector3 enemyPos = new Vector3(500 * -1 /** (Random.Range(0, 1) * 2 - 1)*/, 0, 0);
 
             Instantiate(enemyPrefab, enemyPos, Quaternion.identity);
         }
