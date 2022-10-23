@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     int posNum;
-    float[] positions = new float[] {-4.3f, 0, 4.3f};
+    float[] positions = new float[] {-4.6f, 0, 4.6f};
 
     // Start is called before the first frame update
     void Start()
