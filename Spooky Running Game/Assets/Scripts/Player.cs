@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     int posNum;
-    float[] positions = new float[] {-4, 0, 4};
+    float[] positions = new float[] {-4.3f, 0, 4.3f};
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,6 @@ public class Player : MonoBehaviour
     {
         Vector2 newPos = new Vector2(transform.position.x, positions[posNum]);
 
-        transform.position = Vector2.Lerp(transform.position, newPos, 5 * Time.deltaTime);
+        transform.position = Vector2.Lerp(transform.position, newPos, 7 * Time.deltaTime);
     }
 }
