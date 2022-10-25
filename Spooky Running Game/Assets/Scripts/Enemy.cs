@@ -30,5 +30,6 @@ public class Enemy : MonoBehaviour
     {
         //rb.MovePosition(transform.position + Vector3.right);
         rb.velocity = Vector2.right * speed * direction;
+        rb.rotation = 90 * direction;
     }
 }
