@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     int direction;
 
-    float[] positions = new float[] { -4.6f, 0, 4.6f };
+    float[] positions = new float[] { -3.75f, 0.7f, 5.3f };
     
 
     // Start is called before the first frame update

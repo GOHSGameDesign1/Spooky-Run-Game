@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
 
             Vector3 enemyPos = new Vector3(500 * -1 /** (Random.Range(0, 1) * 2 - 1)*/, 0, 0);
 
-            Instantiate(enemyPrefab, enemyPos, Quaternion.identity);
+            Instantiate(enemyPrefab, enemyPos, Quaternion.Euler(0,0,90));
         }
     }
 }
