@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Candy : MonoBehaviour
 {
+    public Rigidbody2D rb;
+    public float speed;
+
+    float[] positions = new float[] { -3.75f, 0.7f, 5.3f };
     // Start is called before the first frame update
     void Start()
     {
-        
+        int posNum = Random.Range(0, 3);
+        Vector3 enemyPos = new Vector3(17, positions[posNum], 0);
+
+        transform.position = enemyPos;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        rb.velocity = Vector2.right * speed * -1;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
     }
 }
