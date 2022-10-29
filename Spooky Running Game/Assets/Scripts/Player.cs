@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     float[] positions = new float[] {-3.75f, 0.7f, 5.3f};
     int score;
 
+    public Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +35,9 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        Vector2 newPos = new Vector2(transform.position.x, positions[posNum]);
+        Vector2 newPos = Vector2.Lerp(rb.position, new Vector2(transform.position.x, positions[posNum]), Time.deltaTime);
 
-        transform.position = Vector2.Lerp(transform.position, newPos, 7 * Time.deltaTime);
+        rb.MovePosition(newPos);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
