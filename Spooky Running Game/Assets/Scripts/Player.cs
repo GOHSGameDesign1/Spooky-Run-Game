@@ -6,11 +6,13 @@ public class Player : MonoBehaviour
 {
     int posNum;
     float[] positions = new float[] {-3.75f, 0.7f, 5.3f};
+    int score;
 
     // Start is called before the first frame update
     void Start()
     {
         posNum = 1;
+        score = 0;
     }
 
     // Update is called once per frame
@@ -40,7 +42,8 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Candy")
         {
-            Debug.Log("candy picked up");
+            score++;
+            Debug.Log("candy picked up. Score = " + score);
         }
     }
 }
