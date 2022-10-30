@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     int posNum;
-    float[] positions = new float[] {-3.75f, 0.7f, 5.3f};
+    float[] positions = new float[] { -4.7f, -0.2f, 4.3f };
     int score;
     public float speed;
+    public float switchSpeed;
     public Rigidbody2D rb;
     public PlayerControls playerControls;
     
@@ -20,16 +21,39 @@ public class Player : MonoBehaviour
         score = 0;
 
         playerControls = new PlayerControls();
-        playerControls.Player.Enable();
-        playerControls.Player.Movement.performed += Movement;
+        //playerControls.Player.Enable();
+        //playerControls.Player.Movement.performed += Movement;
+        playerControls.PlayerAlt.Enable();
+        playerControls.PlayerAlt.Horizontal.performed += LaneSwitch;
 
     }
 
     private void Movement(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
+        //Debug.Log(context);
 
         //rb.MovePosition(rb.position + context.ReadValue<Vector2>() * 3 * Time.fixedDeltaTime);
+    }
+
+    private void LaneSwitch(InputAction.CallbackContext context)
+    {
+        //Debug.Log(context);
+
+        if(context.ReadValue<float>() > 0)
+        {
+
+            if(posNum >= 2)
+            {
+                return;
+            }
+
+            posNum++;
+        } else if (posNum > 0)
+        {
+            posNum--;
+        }
+
+        Debug.Log(posNum);
     }
 
     // Update is called once per frame
@@ -47,16 +71,17 @@ public class Player : MonoBehaviour
 
         //Move();
 
-        Vector2 inputVector = playerControls.Player.Movement.ReadValue<Vector2>();
-        rb.MovePosition(rb.position + inputVector * speed * Time.fixedDeltaTime);
+        //Vector2 inputVector = playerControls.Player.Movement.ReadValue<Vector2>();
+        //rb.MovePosition(rb.position + inputVector * speed * Time.fixedDeltaTime);
+        rb.position = Vector2.Lerp(rb.position, new Vector2(positions[posNum], rb.position.y), Time.deltaTime * switchSpeed);
     }
 
     private void Move()
     {
         //Vector2 newPos = Vector2.Lerp(rb.position, new Vector2(rb.position.x, positions[posNum]), Time.deltaTime * speed);
-        Vector2 newPos = new Vector2(rb.position.x, positions[posNum]);
+        //Vector2 newPos = new Vector2(rb.position.x, positions[posNum]);
 
-        rb.MovePosition(newPos);
+        //rb.MovePosition(newPos);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
