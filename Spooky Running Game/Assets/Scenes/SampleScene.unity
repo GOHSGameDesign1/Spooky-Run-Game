@@ -199,14 +199,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152005161}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,14 +319,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e933f6f7d79195a48a0702513fa591b3, type: 3}
   m_Name: 
@@ -653,14 +653,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034625961}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.3704, y: 0.3096, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16, y: 0.28, z: 0}
   m_LocalScale: {x: 1.1495656, y: 1.1495656, z: 1.7118181}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2034625964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,6 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  switchSpeed: 10
   rb: {fileID: 2034625966}
 --- !u!61 &2034625965
 BoxCollider2D:
@@ -808,11 +809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3182579851241296430, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.9231
+      value: -4.72
       objectReference: {fileID: 0}
     - target: {fileID: 3182579851241296430, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.8631
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 3182579851241296430, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
       propertyPath: m_LocalPosition.z
@@ -820,19 +821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3182579851241296430, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3182579851241296430, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3182579851241296430, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3182579851241296430, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3182579851241296430, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -844,7 +837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3182579851241296430, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}

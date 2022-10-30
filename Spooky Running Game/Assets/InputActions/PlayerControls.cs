@@ -107,6 +107,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Vertical"",
+                    ""type"": ""Value"",
+                    ""id"": ""3287698f-9aaf-4afe-b25f-ab09c631080b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -142,6 +151,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Horizontal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""fa299124-6b96-4026-986e-0545e33d43fe"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Vertical"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""2978400d-625a-403f-b34a-e260123467a1"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Vertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""4aa75c14-122c-4ab9-8eb7-b7a051af3978"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Vertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -154,6 +196,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // PlayerAlt
         m_PlayerAlt = asset.FindActionMap("PlayerAlt", throwIfNotFound: true);
         m_PlayerAlt_Horizontal = m_PlayerAlt.FindAction("Horizontal", throwIfNotFound: true);
+        m_PlayerAlt_Vertical = m_PlayerAlt.FindAction("Vertical", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -247,11 +290,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerAlt;
     private IPlayerAltActions m_PlayerAltActionsCallbackInterface;
     private readonly InputAction m_PlayerAlt_Horizontal;
+    private readonly InputAction m_PlayerAlt_Vertical;
     public struct PlayerAltActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerAltActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Horizontal => m_Wrapper.m_PlayerAlt_Horizontal;
+        public InputAction @Vertical => m_Wrapper.m_PlayerAlt_Vertical;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAlt; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,6 +309,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Horizontal.started -= m_Wrapper.m_PlayerAltActionsCallbackInterface.OnHorizontal;
                 @Horizontal.performed -= m_Wrapper.m_PlayerAltActionsCallbackInterface.OnHorizontal;
                 @Horizontal.canceled -= m_Wrapper.m_PlayerAltActionsCallbackInterface.OnHorizontal;
+                @Vertical.started -= m_Wrapper.m_PlayerAltActionsCallbackInterface.OnVertical;
+                @Vertical.performed -= m_Wrapper.m_PlayerAltActionsCallbackInterface.OnVertical;
+                @Vertical.canceled -= m_Wrapper.m_PlayerAltActionsCallbackInterface.OnVertical;
             }
             m_Wrapper.m_PlayerAltActionsCallbackInterface = instance;
             if (instance != null)
@@ -271,6 +319,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Horizontal.started += instance.OnHorizontal;
                 @Horizontal.performed += instance.OnHorizontal;
                 @Horizontal.canceled += instance.OnHorizontal;
+                @Vertical.started += instance.OnVertical;
+                @Vertical.performed += instance.OnVertical;
+                @Vertical.canceled += instance.OnVertical;
             }
         }
     }
@@ -282,5 +333,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerAltActions
     {
         void OnHorizontal(InputAction.CallbackContext context);
+        void OnVertical(InputAction.CallbackContext context);
     }
 }

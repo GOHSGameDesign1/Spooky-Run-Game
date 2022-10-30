@@ -73,7 +73,9 @@ public class Player : MonoBehaviour
 
         //Vector2 inputVector = playerControls.Player.Movement.ReadValue<Vector2>();
         //rb.MovePosition(rb.position + inputVector * speed * Time.fixedDeltaTime);
-        rb.position = Vector2.Lerp(rb.position, new Vector2(positions[posNum], rb.position.y), Time.deltaTime * switchSpeed);
+
+        Vector2 pos = new Vector2(positions[posNum], rb.position.y + playerControls.PlayerAlt.Vertical.ReadValue<float>());
+        rb.position = Vector2.Lerp(rb.position, pos, Time.deltaTime * switchSpeed);
     }
 
     private void Move()
