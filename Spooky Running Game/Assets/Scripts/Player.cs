@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         playerControls = new PlayerControls();
         playerControls.Player.Enable();
         playerControls.Player.Movement.performed += Movement;
+
     }
 
     private void Movement(InputAction.CallbackContext context)
@@ -65,5 +66,11 @@ public class Player : MonoBehaviour
             score++;
             Debug.Log("candy picked up. Score = " + score);
         }
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Player.Movement.performed -= Movement;
+        playerControls.Player.Disable();
     }
 }

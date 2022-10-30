@@ -94,6 +94,56 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerAlt"",
+            ""id"": ""9d8a4d7d-11d1-41bb-883b-ac940b560874"",
+            ""actions"": [
+                {
+                    ""name"": ""Horizontal"",
+                    ""type"": ""Value"",
+                    ""id"": ""8faae123-5e27-4919-9fa7-9905902190f2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""f3899025-5004-4e20-b916-e8b3119917f2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f83cfdc7-3aa3-40a0-bcfd-87e46481ad57"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""41db9307-f457-444d-b859-e20d49a2cce5"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -101,6 +151,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        // PlayerAlt
+        m_PlayerAlt = asset.FindActionMap("PlayerAlt", throwIfNotFound: true);
+        m_PlayerAlt_Horizontal = m_PlayerAlt.FindAction("Horizontal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -189,8 +242,45 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // PlayerAlt
+    private readonly InputActionMap m_PlayerAlt;
+    private IPlayerAltActions m_PlayerAltActionsCallbackInterface;
+    private readonly InputAction m_PlayerAlt_Horizontal;
+    public struct PlayerAltActions
+    {
+        private @PlayerControls m_Wrapper;
+        public PlayerAltActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Horizontal => m_Wrapper.m_PlayerAlt_Horizontal;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerAlt; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerAltActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerAltActions instance)
+        {
+            if (m_Wrapper.m_PlayerAltActionsCallbackInterface != null)
+            {
+                @Horizontal.started -= m_Wrapper.m_PlayerAltActionsCallbackInterface.OnHorizontal;
+                @Horizontal.performed -= m_Wrapper.m_PlayerAltActionsCallbackInterface.OnHorizontal;
+                @Horizontal.canceled -= m_Wrapper.m_PlayerAltActionsCallbackInterface.OnHorizontal;
+            }
+            m_Wrapper.m_PlayerAltActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Horizontal.started += instance.OnHorizontal;
+                @Horizontal.performed += instance.OnHorizontal;
+                @Horizontal.canceled += instance.OnHorizontal;
+            }
+        }
+    }
+    public PlayerAltActions @PlayerAlt => new PlayerAltActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface IPlayerAltActions
+    {
+        void OnHorizontal(InputAction.CallbackContext context);
     }
 }
