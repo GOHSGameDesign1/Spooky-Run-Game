@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -9,18 +10,31 @@ public class Player : MonoBehaviour
     int score;
     public float speed;
     public Rigidbody2D rb;
+    public PlayerControls playerControls;
+    
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         posNum = 1;
         score = 0;
+
+        playerControls = new PlayerControls();
+        playerControls.Player.Enable();
+        playerControls.Player.Movement.performed += Movement;
+    }
+
+    private void Movement(InputAction.CallbackContext context)
+    {
+        Debug.Log(context);
+
+        //rb.MovePosition(rb.position + context.ReadValue<Vector2>() * 3 * Time.fixedDeltaTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && posNum != 2)
+        /*if (Input.GetKeyDown(KeyCode.RightArrow) && posNum != 2)
         {
             posNum++;
         }
@@ -28,9 +42,12 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftArrow) && posNum != 0)
         {
             posNum--;
-        }
+        }*/
 
-        Move();
+        //Move();
+
+        Vector2 inputVector = playerControls.Player.Movement.ReadValue<Vector2>();
+        rb.MovePosition(rb.position + inputVector * speed * Time.fixedDeltaTime);
     }
 
     private void Move()

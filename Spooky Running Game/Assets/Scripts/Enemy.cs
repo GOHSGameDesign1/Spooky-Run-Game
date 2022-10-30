@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     int direction;
 
-    float[] positions = new float[] { -3.75f, 0.7f, 5.3f };
+    float[] positions = new float[] { -4.7f, -0.2f, 4.3f };
     
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     {
         int posNum = Random.Range(0, 3);
         direction = (Random.Range(0, 2) * 2 - 1);
-        Vector3 enemyPos = new Vector3(17 * -1 * direction, positions[posNum], 0);
+        Vector3 enemyPos = new Vector3(positions[posNum], 17 * direction, 0);
 
         transform.position = enemyPos;
 
@@ -35,14 +35,13 @@ public class Enemy : MonoBehaviour
 
     void Move()
     {
-        rb.rotation = 90 * direction;
         if (direction < 0)
         {
-            rb.velocity = Vector2.right * (speed + 3) * direction;
+            rb.velocity = Vector2.down * (speed + 3) * direction;
         }
         else
         {
-            rb.velocity = Vector2.right * speed * direction;
+            rb.velocity = Vector2.down * speed * direction;
 
         }
     }

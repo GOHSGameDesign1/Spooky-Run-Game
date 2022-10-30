@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
 
             Vector3 enemyPos = new Vector3(500 * -1 /** (Random.Range(0, 1) * 2 - 1)*/, 0, 0);
 
-            Instantiate(enemyPrefab, enemyPos, Quaternion.Euler(0,0,90));
+            Instantiate(enemyPrefab, enemyPos, Quaternion.identity);
         }
     }
 
@@ -41,7 +41,7 @@ public class Spawner : MonoBehaviour
 
             Vector3 enemyPos = new Vector3(500 * -1 /** (Random.Range(0, 1) * 2 - 1)*/, 0, 0);
 
-            Instantiate(candyPrefab, enemyPos, Quaternion.Euler(0, 0, 90));
+            Instantiate(candyPrefab, enemyPos, Quaternion.identity);
         }
     }
 }
