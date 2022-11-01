@@ -16,9 +16,9 @@ public class Background : MonoBehaviour
     {
         transform.Translate(Vector2.down * Time.deltaTime * 8, Space.World);
 
-        /*if(transform.position.y <= 0)
+        if(transform.position.y <= -30)
         {
-            Instantiate(bgPrefab, new Vector3(transform.position.x, 34, transform.position.z), Quaternion.identity);
-        }*/
+            Destroy(gameObject);
+        }
     }
 }
