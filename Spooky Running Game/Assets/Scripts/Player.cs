@@ -21,10 +21,10 @@ public class Player : MonoBehaviour
         score = 0;
 
         playerControls = new PlayerControls();
-        playerControls.Player.Enable();
-        playerControls.Player.Movement.performed += Movement;
-        //playerControls.PlayerAlt.Enable();
-        //playerControls.PlayerAlt.Horizontal.performed += LaneSwitch;
+        //playerControls.Player.Enable();
+        //playerControls.Player.Movement.performed += Movement;
+        playerControls.PlayerAlt.Enable();
+        playerControls.PlayerAlt.Horizontal.performed += LaneSwitch;
 
     }
 
@@ -71,11 +71,11 @@ public class Player : MonoBehaviour
 
         //Move();
 
-        Vector2 inputVector = playerControls.Player.Movement.ReadValue<Vector2>();
-        rb.MovePosition(rb.position + inputVector * speed * Time.fixedDeltaTime);
+        //Vector2 inputVector = playerControls.Player.Movement.ReadValue<Vector2>();
+        //rb.MovePosition(rb.position + inputVector * speed * Time.fixedDeltaTime);
 
-        //Vector2 pos = new Vector2(positions[posNum], rb.position.y + playerControls.PlayerAlt.Vertical.ReadValue<float>());
-        //rb.position = Vector2.Lerp(rb.position, pos, Time.deltaTime * switchSpeed);
+        Vector2 pos = new Vector2(positions[posNum], rb.position.y + playerControls.PlayerAlt.Vertical.ReadValue<float>());
+        rb.position = Vector2.Lerp(rb.position, pos, Time.deltaTime * switchSpeed);
     }
 
     private void Move()
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        playerControls.Player.Movement.performed -= Movement;
-        playerControls.Player.Disable();
+        //playerControls.Player.Movement.performed -= Movement;
+        playerControls.PlayerAlt.Disable();
     }
 }
