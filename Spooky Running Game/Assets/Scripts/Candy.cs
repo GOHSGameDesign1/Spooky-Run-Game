@@ -7,12 +7,12 @@ public class Candy : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
 
-    float[] positions = new float[] { -3.75f, 0.7f, 5.3f };
+    float[] positions = new float[] { -4.7f, -0.2f, 4.3f };
     // Start is called before the first frame update
     void Start()
     {
         int posNum = Random.Range(0, 3);
-        Vector3 enemyPos = new Vector3(17, positions[posNum], 0);
+        Vector3 enemyPos = new Vector3(positions[posNum], 17, 0);
 
         transform.position = enemyPos;
     }
@@ -20,7 +20,7 @@ public class Candy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = Vector2.right * speed * -1;
+        rb.velocity = Vector2.up * speed * -1;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
