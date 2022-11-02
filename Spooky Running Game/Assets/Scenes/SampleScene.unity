@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3fae2a8535e3645be234a5cfb9a905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1571508810}
+  enemyPrefab: {fileID: 3182579851241296424, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
   candyPrefab: {fileID: 266225830310849658, guid: 39b5da20cd3699845965d4f34aad7eae, type: 3}
 --- !u!114 &519420035
 MonoBehaviour:
@@ -499,11 +499,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1571508810 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3182579851241296424, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
-  m_PrefabInstance: {fileID: 3182579851855315042}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2034625961
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,6 +719,10 @@ PrefabInstance:
     - target: {fileID: 3182579851241296424, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182579851241296424, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3182579851241296425, guid: 9e00ef69ec0a33f4992cec490d1fd4ca, type: 3}
       propertyPath: m_FlipX

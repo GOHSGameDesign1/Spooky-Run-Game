@@ -18,7 +18,7 @@ public class BGManager : MonoBehaviour
     {
         if(currentBG.transform.position.y <= 0)
         {
-            currentBG = Instantiate(bgPrefab, new Vector3(0.6f, 33.9f, 0), Quaternion.Euler(0,0,90));
+            currentBG = Instantiate(bgPrefab, new Vector3(0.6f, 33f, 0), Quaternion.Euler(0,0,90));
         }
     }
 }
