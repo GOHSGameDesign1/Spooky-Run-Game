@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3182579851241296430}
   - component: {fileID: 3182579851241296425}
   - component: {fileID: 8573707967178193123}
-  - component: {fileID: 8007429518086080281}
   - component: {fileID: 494489427928300131}
+  - component: {fileID: 99749453447588757}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -108,32 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &8007429518086080281
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3182579851241296424}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0051836967, y: 0.0257051}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.66, y: 2.66}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.6278706, y: 3.5096173}
-  m_EdgeRadius: 0
 --- !u!114 &494489427928300131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,3 +123,19 @@ MonoBehaviour:
   rb: {fileID: 8573707967178193123}
   speed: 5
   direction: 0
+--- !u!70 &99749453447588757
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3182579851241296424}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.07629176, y: -0.057220154}
+  m_Size: {x: 0.9662872, y: 1.8741764}
+  m_Direction: 0
