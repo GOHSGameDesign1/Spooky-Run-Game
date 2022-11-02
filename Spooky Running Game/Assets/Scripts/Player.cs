@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     int posNum;
     float[] positions = new float[] { -4.7f, -0.2f, 4.3f };
-    int score;
     public float speed;
     public float switchSpeed;
     public Rigidbody2D rb;
     public PlayerControls playerControls;
+
+    private Vector2 screenBounds;
     
 
     // Start is called before the first frame update
     void Awake()
     {
         posNum = 1;
-        score = 0;
 
         playerControls = new PlayerControls();
         //playerControls.Player.Enable();
         //playerControls.Player.Movement.performed += Movement;
         playerControls.PlayerAlt.Enable();
         playerControls.PlayerAlt.Horizontal.performed += LaneSwitch;
+
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
     }
 
@@ -52,8 +55,6 @@ public class Player : MonoBehaviour
         {
             posNum--;
         }
-
-        Debug.Log(posNum);
     }
 
     // Update is called once per frame
@@ -78,6 +79,14 @@ public class Player : MonoBehaviour
         rb.position = Vector2.Lerp(rb.position, pos, Time.deltaTime * switchSpeed);
     }
 
+    void LateUpdate()
+    {
+        Vector2 viewPos = rb.position;
+        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1, screenBounds.x * 1);
+        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1, screenBounds.y * 1);
+        rb.position = viewPos;
+    }
+
     private void Move()
     {
         //Vector2 newPos = Vector2.Lerp(rb.position, new Vector2(rb.position.x, positions[posNum]), Time.deltaTime * speed);
@@ -90,8 +99,16 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Candy")
         {
-            score += collision.GetComponent<Candy>().scoreValue;
-            Debug.Log("candy picked up. Score = " + score);
+            Spawner.score += collision.GetComponent<Candy>().scoreValue;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Dead!");
+            gameObject.SetActive(false);
         }
     }
 
@@ -99,5 +116,9 @@ public class Player : MonoBehaviour
     {
         //playerControls.Player.Movement.performed -= Movement;
         playerControls.PlayerAlt.Disable();
+
+        FindObjectOfType<Spawner>().Die();
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
