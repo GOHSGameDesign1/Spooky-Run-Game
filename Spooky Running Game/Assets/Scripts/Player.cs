@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {
     int posNum;
     float[] positions = new float[] { -4.7f, -0.2f, 4.3f };
-    int score;
     public float speed;
     public float switchSpeed;
     public Rigidbody2D rb;
@@ -21,7 +20,6 @@ public class Player : MonoBehaviour
     void Awake()
     {
         posNum = 1;
-        score = 0;
 
         playerControls = new PlayerControls();
         //playerControls.Player.Enable();
@@ -101,8 +99,7 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Candy")
         {
-            score += collision.GetComponent<Candy>().scoreValue;
-            Debug.Log("candy picked up. Score = " + score);
+            Spawner.score += collision.GetComponent<Candy>().scoreValue;
         }
     }
 
@@ -120,6 +117,8 @@ public class Player : MonoBehaviour
         //playerControls.Player.Movement.performed -= Movement;
         playerControls.PlayerAlt.Disable();
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        FindObjectOfType<Spawner>().Die();
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
