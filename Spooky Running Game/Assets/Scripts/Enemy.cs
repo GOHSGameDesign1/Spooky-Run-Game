@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     int direction;
 
     float[] positions = new float[] { -4.7f, -0.2f, 4.3f };
+
+    private Vector2 screenBounds;
     
 
     // Start is called before the first frame update
@@ -22,6 +24,7 @@ public class Enemy : MonoBehaviour
 
         transform.position = enemyPos;
 
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
 
     }
 
@@ -30,6 +33,11 @@ public class Enemy : MonoBehaviour
     {
         //rb.MovePosition(transform.position + Vector3.right);
         Move();
+
+        if(Mathf.Abs(rb.position.y) >= (screenBounds.y + 10))
+        {
+            Destroy(gameObject);
+        }
 
     }
 
