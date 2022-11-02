@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Candy")
         {
-            score++;
+            score += collision.GetComponent<Candy>().scoreValue;
             Debug.Log("candy picked up. Score = " + score);
         }
     }
