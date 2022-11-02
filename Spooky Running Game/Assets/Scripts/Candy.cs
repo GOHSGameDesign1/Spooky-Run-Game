@@ -6,6 +6,7 @@ public class Candy : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float speed;
+    public int scoreValue;
 
     float[] positions = new float[] { -4.7f, -0.2f, 4.3f };
 
