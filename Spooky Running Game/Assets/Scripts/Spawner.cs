@@ -5,13 +5,17 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject enemyPrefab2;
+    public GameObject enemyPrefab3;
     public GameObject candyPrefab;
-    //float[] positions = new float[] { -4.6f, 0, 4.6f };
+    GameObject[] spawnChances;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Spawn());
         StartCoroutine(SpawnCandy());
+
+        spawnChances = new GameObject[] { candyPrefab, candyPrefab, candyPrefab, enemyPrefab, enemyPrefab2, enemyPrefab3};
     }
 
     // Update is called once per frame
