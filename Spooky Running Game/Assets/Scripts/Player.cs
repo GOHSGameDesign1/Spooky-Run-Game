@@ -52,8 +52,6 @@ public class Player : MonoBehaviour
         {
             posNum--;
         }
-
-        Debug.Log(posNum);
     }
 
     // Update is called once per frame
@@ -92,6 +90,15 @@ public class Player : MonoBehaviour
         {
             score += collision.GetComponent<Candy>().scoreValue;
             Debug.Log("candy picked up. Score = " + score);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Dead!");
+            gameObject.SetActive(false);
         }
     }
 
