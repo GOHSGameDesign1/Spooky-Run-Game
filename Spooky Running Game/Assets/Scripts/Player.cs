@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float switchSpeed;
     public Rigidbody2D rb;
     public PlayerControls playerControls;
+
+    private Vector2 screenBounds;
     
 
     // Start is called before the first frame update
@@ -26,6 +28,8 @@ public class Player : MonoBehaviour
         //playerControls.Player.Movement.performed += Movement;
         playerControls.PlayerAlt.Enable();
         playerControls.PlayerAlt.Horizontal.performed += LaneSwitch;
+
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
     }
 
@@ -75,6 +79,14 @@ public class Player : MonoBehaviour
 
         Vector2 pos = new Vector2(positions[posNum], rb.position.y + playerControls.PlayerAlt.Vertical.ReadValue<float>());
         rb.position = Vector2.Lerp(rb.position, pos, Time.deltaTime * switchSpeed);
+    }
+
+    void LateUpdate()
+    {
+        Vector2 viewPos = rb.position;
+        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1, screenBounds.x * 1);
+        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1, screenBounds.y * 1);
+        rb.position = viewPos;
     }
 
     private void Move()
