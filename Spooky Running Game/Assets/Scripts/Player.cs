@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -106,5 +107,7 @@ public class Player : MonoBehaviour
     {
         //playerControls.Player.Movement.performed -= Movement;
         playerControls.PlayerAlt.Disable();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
